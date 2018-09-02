@@ -1,0 +1,93 @@
+<!DOCTYPE html>
+<html>
+<head>
+
+	<title>MORSE DECODER</title>
+	<script type="text/javascript">
+	 morseJSON = {
+	".-": "a",
+	"-...":"b",
+	"-.-.": "c",
+	"-..": "d",
+	".":"e",
+	"..-.":"f",
+	"--.":"g",
+	"....":"h",
+	"..":"i",
+	".---":"j",
+    "-.-":"k", 
+    ".-..":"l", 
+    "--":"m", 
+    "-.":"n", 
+    "---":"o", 
+    ".--.":"p", 
+    "--.-":"q", 
+    ".-.":"r", 
+    "...":"s", 
+    "-":"t", 
+    "..-":"u", 
+    "...-":"v", 
+    ".--":"w", 
+    "-..-":"x", 
+    "-.--":"y", 
+    "--..":"z", 
+    ".----":"1", 
+    "..---":"2", 
+    "...--":"3", 
+    "....-":"4", 
+    ".....":"5", 
+    "-....":"6", 
+    "--...":"7", 
+    "---..":"8", 
+    "----.":"9", 
+    "-----":"0", 
+    "|":" "
+};
+
+function decode()
+{
+	 var letters = document.getElementById("chars").value.split(' ');
+	 document.getElementById("textbox").value="";
+	 for(var i =0; i<letters.length; i++)
+	 {
+	 	for(x in morseJSON)
+	 	{
+	 		if( letters[i] == x)
+	 			{
+	 				document.getElementById("textbox").value+=morseJSON[x];
+	 			}
+	 	}
+	 }
+	 document.getElementById("textbox").write(document.getElementById("textbox").value);
+
+}
+
+</script>
+
+<script src='https://code.responsivevoice.org/responsivevoice.js'></script>
+
+</head>
+<body>
+	<h1><b>DESCRIPTION :</b> </h1>
+	<h3> This application takes a morse coded message as input and returns<br>
+		 the output in english text and voice.</h3><br>
+	 <h3>Every morse alphabet should be seperated by a space.<br>
+	 	 For example the input <br>
+	 		.- -... -.-.<br>
+	 	will be translated to<br>
+	 		abc<br>
+	 	note the single spaces between the morse alphabets.</h3>
+	 	<br>
+
+	<form>
+		Enter a morse code message: 
+		<input type="text" id="chars" size="100" onfocus="this.value=''"> 
+		 <input type="button" value="Decode" onclick="decode()">
+		<br>
+		<br>
+<textarea id="textbox" cols = "40" rows = "10" style="width:50%" style="height: 40%" wrap="virtual" ></textarea> <br>
+<input onclick='responsiveVoice.speak("The entered text is "+textbox.value,"UK English Male", {volume: 10});' type='button' value='🔊 Play' />
+<input type="button" value="Clear"  onclick=" textbox.value=''">
+</form>
+</body>
+</html>
