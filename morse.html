@@ -83,10 +83,11 @@ function decode()
 		Enter a morse code message: 
 		<input type="text" id="chars" size="100" onfocus="this.value=''"> 
 		 <input type="button" value="Decode" onclick="decode()">
+		<input type="button" value="Clear" onclick="chars.value=''">
 		<br>
 		<br>
 <textarea id="textbox" cols = "40" rows = "10" style="width:50%" style="height: 40%" wrap="virtual" ></textarea> <br>
-<input onclick='responsiveVoice.speak("The entered text is "+textbox.value,"UK English Male", {volume: 10});' type='button' value='🔊 Play' />
+<input onclick='responsiveVoice.speak(textbox.value,UK English Male, {volume: 10});' type='button' value='🔊 Play' />
 <input type="button" value="Clear"  onclick=" textbox.value=''">
 </form>
 </body>
