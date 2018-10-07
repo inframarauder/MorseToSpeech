@@ -1,0 +1,140 @@
+<!doctype html>
+<html lang="en-US">
+<head>
+  <meta charset="utf-8">
+  <meta http-equiv="Content-Type" content="text/html">
+  <title>MorseToSpeech</title>
+  <link rel="stylesheet" type="text/css" media="all" href="css/styles.css">
+  <script type="text/javascript" src="js/jquery-1.10.2.min.js"></script>
+  
+  
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+
+  <link href="https://fonts.googleapis.com/css?family=Open+Sans" rel="stylesheet">
+  <link href="https://fonts.googleapis.com/icon?family=Material+Icons" rel="stylesheet">
+
+  <script src='https://code.responsivevoice.org/responsivevoice.js'></script>
+	<script type="text/javascript">
+	 morseJSON = {
+	".-": "a",
+	"-...":"b",
+	"-.-.": "c",
+	"-..": "d",
+	".":"e",
+	"..-.":"f",
+	"--.":"g",
+	"....":"h",
+	"..":"i",
+	".---":"j",
+    "-.-":"k", 
+    ".-..":"l", 
+    "--":"m", 
+    "-.":"n", 
+    "---":"o", 
+    ".--.":"p", 
+    "--.-":"q", 
+    ".-.":"r", 
+    "...":"s", 
+    "-":"t", 
+    "..-":"u", 
+    "...-":"v", 
+    ".--":"w", 
+    "-..-":"x", 
+    "-.--":"y", 
+    "--..":"z", 
+    ".----":"1", 
+    "..---":"2", 
+    "...--":"3", 
+    "....-":"4", 
+    ".....":"5", 
+    "-....":"6", 
+    "--...":"7", 
+    "---..":"8", 
+    "----.":"9", 
+    "-----":"0", 
+    "|":" "
+};
+
+function decode()
+{
+	 var letters = document.getElementById("ghusername").value.split(' ');
+	 document.getElementById("ghoutput").value="";
+	 for(var i =0; i<letters.length; i++)
+	 {
+	 	for(x in morseJSON)
+	 	{
+	 		if( letters[i] == x)
+	 			{
+	 				document.getElementById("ghoutput").value+=morseJSON[x];
+	 			}
+	 	}
+	 }
+	 responsiveVoice.speak(document.getElementById("ghoutput").value,"UK English Male", {volume: 1});
+	 document.getElementById("ghoutput").write(document.getElementById("ghoutput").value);
+	
+}
+
+</script>
+</head>
+
+<body>
+  
+  <br/><br/><br/>
+  <p class="tag"><b id="front">Morse</b><b id="rear">toSpeech</b></p>
+    
+    <p><input type="text" name="ghusername" id="ghusername" class="ghusername" placeholder="Enter Morse Code..."></p>
+    
+    <p><input type="text" name="ghoutput" id="ghoutput" class="ghoutput" placeholder="English Output..."></p>
+	
+	
+  
+  
+
+  <button type="button" id="ghsubmitbtn" onclick="decode()"><i class="material-icons">translate</i></button>
+  <br/>
+  <div class="darkmode_toggle"><b class="tag">Switch mode :</b> <button id="dark"><i class="material-icons">
+      highlight
+      </i>  </button></div>
+  
+  
+  
+   
+  </div>
+<script type="text/javascript">
+
+//Dark mode script
+var darkEnabled = false; 
+var place=document.getElementById("ghusername");
+var place1=document.getElementById("ghoutput");
+var tag=document.getElementsByClassName("tag");
+$(document).ready(function() {
+        $("#dark").on("click", switchDarkMode);
+        $("#reset").on("click", reset);
+        }
+      );
+      
+      function switchDarkMode(){
+        darkEnabled = !darkEnabled;
+        if(darkEnabled){
+          $("body").addClass("darkmode");
+          $(place).addClass("darkmode_lite");
+          $(place1).addClass("darkmode_lite");
+          $(tag).addClass("lighttext");
+        } else {
+          $("body").removeClass("darkmode");
+          $(place).removeClass("darkmode_lite");
+          $(place1).removeClass("darkmode_lite");
+          $(tag).removeClass("lighttext");
+
+        }
+      }
+      
+      function reset(){
+        $("body").removeClass("darkmode");
+        $(place).removeClass("darkmode_lite");
+        $(place1).removeClass("darkmode_lite");
+        $(tag).removeClass("lighttext");
+      }
+</script>
+</body>
+</html>
